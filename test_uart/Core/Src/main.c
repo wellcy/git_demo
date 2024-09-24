@@ -92,30 +92,24 @@ typedef union {
     float f_data;
     uint8_t byte[4];
 } FloatByte;
-
+	  FloatByte float_data;
+	  FloatByte received_data;
+	float_data.f_data = 1.28f; // 设置要发送的浮点数
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   { 
-//	  FloatByte float_data;
-	  FloatByte received_data;
-//    float_data.f_data = 3.1415f; // 设置要发送的浮点数
-//    HAL_UART_Transmit(&huart1, float_data.byte, 4, HAL_MAX_DELAY); // 发送浮点数的字节数据
+//      HAL_UART_Transmit(&huart1, float_data.byte, 4, HAL_MAX_DELAY); // 发送浮点数的字节数据
 	  
 	  HAL_UART_Receive(&huart1, received_data.byte, 4, HAL_MAX_DELAY); // 接收4个字节的数据
-      float received_float = received_data.f_data; // 将接收到的字节数据转换为浮点数
-	  if(received_float==3.1415f)
-	  {
-		HAL_GPIO_TogglePin(GPIOC,GPIO_PIN_13);
-		received_float=0;
-	  }
-	  
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
+  float received_data_1=received_data.f_data;
   /* USER CODE END 3 */
 }
 
